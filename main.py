@@ -1,7 +1,7 @@
 import yt_dlp
 import os
 
-from filedialog import getFilePath
+from core import *
 
 arquivo = getFilePath()
 
@@ -19,4 +19,8 @@ os.makedirs("./musics", exist_ok=True)
 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
     for url in url_list:
         url = url.split("&")[0]
+        if "music" in url:
+            url = url.replace("music", "www")
         ydl.download([url])
+
+convert()
